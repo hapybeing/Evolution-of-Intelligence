@@ -159,8 +159,8 @@ export default function LifeEmerges() {
       {/* Sticky viewport */}
       <div style={{ position: 'sticky', top: 0, width: '100%', height: '100vh', overflow: 'hidden' }}>
 
-        {/* ── Canvas ──────────────────────────────────────────────────────── */}
-        <div className="canvas-layer">
+        {/* Canvas */}
+        <div className="canvas-layer" style={{ background: '#000d07' }}>
           {mounted && <BioCanvas scrollProgress={scrollProgress} />}
         </div>
 
