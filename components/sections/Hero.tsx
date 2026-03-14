@@ -197,6 +197,7 @@ export default function Hero() {
         minHeight: '220vh',
         background: 'radial-gradient(ellipse at 50% 40%, #1a0533 0%, #0a0015 45%, #000000 100%)',
         alignItems: 'flex-start',
+        flexDirection: 'column',
         isolation: 'isolate',
         zIndex: 1,
         position: 'relative',
