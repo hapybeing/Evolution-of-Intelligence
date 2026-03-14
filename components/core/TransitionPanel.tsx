@@ -143,6 +143,12 @@ export default function TransitionPanel({
         padding: 'clamp(3rem, 8vw, 7rem) clamp(1.5rem, 6vw, 8rem)',
       }}
     >
+      {/* Top bridge — fades from section bg into panel, no hard cut */}
+      <div aria-hidden style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: '35%',
+        background: `linear-gradient(to bottom, ${bg} 0%, transparent 100%)`,
+        pointerEvents: 'none', zIndex: 0,
+      }} />
       {/* Oversized chapter number in background */}
       {chapter && (
         <div
