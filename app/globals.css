@@ -1,0 +1,368 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   EVOLUTION OF INTELLIGENCE — Global Styles
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Serif:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ──────────────────────────────────────────────── */
+:root {
+  /* Colors */
+  --void:    #000000;
+  --cosmic:  #0a0015;
+  --nebula:  #1a0533;
+  --energy:  #7c3aed;
+  --plasma:  #06b6d4;
+  --life:    #10b981;
+  --neural:  #f59e0b;
+  --beyond:  #ec4899;
+  --ghost:   #f0f0f0;
+
+  /* Fonts */
+  --font-syne:             'Syne', sans-serif;
+  --font-dm-mono:          'DM Mono', monospace;
+  --font-instrument-serif: 'Instrument Serif', serif;
+
+  /* Glow radii */
+  --glow-sm:  0 0 15px;
+  --glow-md:  0 0 30px;
+  --glow-lg:  0 0 60px;
+  --glow-xl:  0 0 120px;
+
+  /* Easing curves */
+  --ease-expo:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-back:    cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth:  cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+
+  /* Z-index layers */
+  --z-canvas:   0;
+  --z-content:  10;
+  --z-overlay:  20;
+  --z-nav:      30;
+  --z-cursor:   100;
+  --z-loader:   999;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--void);
+  color: var(--ghost);
+  font-family: var(--font-syne);
+  overflow-x: hidden;
+  cursor: none; /* Custom cursor takes over */
+}
+
+/* Re-enable cursor on touch devices */
+@media (pointer: coarse) {
+  body { cursor: auto; }
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background-color: var(--energy);
+  color: #ffffff;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--energy);
+  border-radius: 2px;
+}
+
+/* ─── Lenis Smooth Scroll ─────────────────────────────────────────────────── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ─── Typography Utilities ───────────────────────────────────────────────── */
+.font-display  { font-family: var(--font-syne); }
+.font-mono-dm  { font-family: var(--font-dm-mono); }
+.font-serif    { font-family: var(--font-instrument-serif); }
+
+/* Fluid headline — scales with viewport */
+.text-hero {
+  font-size: clamp(4rem, 13vw, 16rem);
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  font-family: var(--font-syne);
+  font-weight: 800;
+}
+
+.text-section {
+  font-size: clamp(2.5rem, 7vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  font-family: var(--font-syne);
+  font-weight: 700;
+}
+
+.text-sub {
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-family: var(--font-dm-mono);
+}
+
+/* ─── Glow Text Utilities ────────────────────────────────────────────────── */
+.glow-energy {
+  text-shadow:
+    0 0 10px rgba(124, 58, 237, 0.8),
+    0 0 30px rgba(124, 58, 237, 0.5),
+    0 0 60px rgba(124, 58, 237, 0.3);
+}
+.glow-plasma {
+  text-shadow:
+    0 0 10px rgba(6, 182, 212, 0.8),
+    0 0 30px rgba(6, 182, 212, 0.5),
+    0 0 60px rgba(6, 182, 212, 0.3);
+}
+.glow-life {
+  text-shadow:
+    0 0 10px rgba(16, 185, 129, 0.8),
+    0 0 30px rgba(16, 185, 129, 0.5),
+    0 0 60px rgba(16, 185, 129, 0.3);
+}
+.glow-neural {
+  text-shadow:
+    0 0 10px rgba(245, 158, 11, 0.8),
+    0 0 30px rgba(245, 158, 11, 0.5),
+    0 0 60px rgba(245, 158, 11, 0.3);
+}
+.glow-beyond {
+  text-shadow:
+    0 0 10px rgba(236, 72, 153, 0.8),
+    0 0 30px rgba(236, 72, 153, 0.5),
+    0 0 60px rgba(236, 72, 153, 0.3);
+}
+
+/* ─── Gradient Text ──────────────────────────────────────────────────────── */
+.gradient-text-cosmic {
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 50%, #f0f0f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-life {
+  background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-ai {
+  background: linear-gradient(135deg, #7c3aed 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-beyond {
+  background: linear-gradient(135deg, #f59e0b 0%, #ec4899 50%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Shimmer Animation ──────────────────────────────────────────────────── */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    rgba(240, 240, 240, 0.4) 0%,
+    rgba(240, 240, 240, 1) 40%,
+    rgba(240, 240, 240, 0.4) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* ─── Glitch Effect ──────────────────────────────────────────────────────── */
+.glitch {
+  position: relative;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+.glitch::before {
+  left: 2px;
+  color: var(--plasma);
+  animation: glitchTop 3s infinite linear;
+}
+.glitch::after {
+  left: -2px;
+  color: var(--beyond);
+  animation: glitchBottom 3s infinite linear;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+@keyframes glitchTop {
+  0%, 90%, 100% { transform: translate(0); }
+  91%           { transform: translate(-2px, -1px); }
+  93%           { transform: translate(2px, 1px); }
+  95%           { transform: translate(-1px, 0); }
+}
+@keyframes glitchBottom {
+  0%, 88%, 100% { transform: translate(0); }
+  89%           { transform: translate(2px, 2px); }
+  91%           { transform: translate(-2px, -1px); }
+  93%           { transform: translate(1px, 0); }
+}
+
+/* ─── Section Utilities ──────────────────────────────────────────────────── */
+.section-full {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.canvas-layer {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-canvas);
+}
+
+.content-layer {
+  position: relative;
+  z-index: var(--z-content);
+}
+
+/* ─── Noise Grain Overlay ─────────────────────────────────────────────────── */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ─── Custom Cursor ──────────────────────────────────────────────────────── */
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--ghost);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate(-50%, -50%);
+  transition: background 0.3s ease;
+  mix-blend-mode: exclusion;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(240, 240, 240, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--ease-expo),
+              height 0.3s var(--ease-expo),
+              border-color 0.3s ease,
+              opacity 0.3s ease;
+  mix-blend-mode: exclusion;
+}
+
+/* ─── Loading Screen ─────────────────────────────────────────────────────── */
+.loader-bar {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--energy), var(--plasma), transparent);
+  animation: loaderPulse 1.5s ease-in-out infinite;
+}
+@keyframes loaderPulse {
+  0%, 100% { opacity: 0.4; transform: scaleX(0.3); }
+  50%       { opacity: 1;   transform: scaleX(1); }
+}
+
+/* ─── Scroll Indicator ───────────────────────────────────────────────────── */
+.scroll-line {
+  width: 1px;
+  background: linear-gradient(to bottom, var(--energy), transparent);
+  animation: scrollDrop 2s ease-in-out infinite;
+}
+@keyframes scrollDrop {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+/* ─── Utility: No Select ─────────────────────────────────────────────────── */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ─── Utility: Smooth Appear ─────────────────────────────────────────────── */
+.will-animate {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* ─── Scanline Effect ────────────────────────────────────────────────────── */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.08) 3px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+}
