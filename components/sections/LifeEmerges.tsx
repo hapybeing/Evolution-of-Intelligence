@@ -200,7 +200,7 @@ export default function LifeEmerges() {
               paddingLeft: 'clamp(1.5rem, 5vw, 5rem)',
               paddingRight: '2rem',
               width: '55%',
-              paddingTop: '4rem',
+              paddingTop: 'clamp(1rem, 6vh, 3rem)',
             }}
           >
             {/* Chapter label */}
@@ -223,7 +223,7 @@ export default function LifeEmerges() {
               ref={headlineRef}
               className="font-display overflow-hidden"
               style={{
-                fontSize: 'clamp(3rem, 9vw, 10rem)',
+                fontSize: 'clamp(2.5rem, min(9vw, 12vh), 9rem)',
                 fontWeight: 800,
                 lineHeight: 0.88,
                 letterSpacing: '-0.04em',
