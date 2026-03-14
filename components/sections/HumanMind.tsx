@@ -324,9 +324,9 @@ export default function HumanMind() {
               fontSize: '0.55rem', letterSpacing: '0.2em',
               color: 'rgba(6,182,212,0.35)', textTransform: 'uppercase' }}
           >
-            <div>{CONCEPTS.length} CONCEPTS</div>
+            <div>15 CONCEPTS</div>
             <div style={{ color: 'rgba(245,158,11,0.35)', marginTop: '4px' }}>
-              {EDGES.length} CONNECTIONS
+              28 CONNECTIONS
             </div>
           </div>
 
