@@ -231,8 +231,7 @@ export default function LifeEmerges() {
             >
               {[
                 { text: 'LIFE',     color: '#f0f0f0' },
-                { text: 'EM-',      color: '#f0f0f0' },
-                { text: 'ERGES',    gradient: true },
+                { text: 'EMERGES',  gradient: true },
               ].map(({ text, color, gradient }, i) => (
                 <div
                   key={i}
@@ -321,10 +320,10 @@ export default function LifeEmerges() {
             </div>
           </div>
 
-          {/* ── Right column: taxonomy floating labels ─────────────────── */}
+          {/* ── Right column: taxonomy floating labels — landscape only ──── */}
           <div
             ref={taxRef}
-            className="absolute inset-0 pointer-events-none"
+            className="absolute inset-0 pointer-events-none landscape-only"
             style={{ zIndex: 4 }}
           >
             {TAXONOMY.map(({ label, sub, x, y, delay }) => (
