@@ -51,7 +51,6 @@ export default function ArtificialMind() {
   const bodyRef     = useRef<HTMLDivElement>(null);
   const labelRef    = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
-  const layerLabels = useRef<HTMLDivElement>(null);
   const metricsRef  = useRef<HTMLDivElement>(null);
   const scrollProgress = useRef(0);
 
@@ -126,17 +125,6 @@ export default function ArtificialMind() {
         );
       }
 
-      // Layer labels
-      const labels = layerLabels.current?.querySelectorAll('.layer-label');
-      if (labels?.length) {
-        gsap.fromTo(labels,
-          { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: 'expo.out',
-            scrollTrigger: { trigger: sectionRef.current, start: 'top 50%' } }
-        );
-      }
-
-
     }, sectionRef);
 
     return () => ctx.revert();
@@ -188,12 +176,13 @@ export default function ArtificialMind() {
         <div className="content-layer absolute inset-0 flex" style={{ zIndex: 3 }}>
 
           {/* ── Left column ────────────────────────────────────────────────── */}
-          <div className="flex flex-col justify-center"
+          <div className="flex flex-col"
             style={{
               paddingLeft: 'clamp(1.5rem, 5vw, 5rem)',
               paddingRight: '2rem',
-              width: '50%',
-              paddingTop: 'clamp(1rem, 6vh, 3rem)',
+              width: '100%',
+              maxWidth: '540px',
+              paddingTop: 'clamp(4rem, 10vh, 6rem)',
             }}
           >
             {/* Label */}
@@ -205,14 +194,12 @@ export default function ArtificialMind() {
             </div>
 
             {/* Headline */}
-            <div
-              ref={headlineRef}
-              className="font-display overflow-hidden"
+            <div ref={headlineRef} className="font-display overflow-hidden"
               style={{ fontSize: 'clamp(2.5rem, min(9vw, 12vh), 9rem)', fontWeight: 800,
                 lineHeight: 0.88, letterSpacing: '-0.04em', perspective: '800px' }}
             >
               {[
-                { text: 'THE',      color: '#f0f0f0',               gradient: false },
+                { text: 'THE',     color: '#f0f0f0',               gradient: false },
                 { text: 'DIGITAL', color: '#f0f0f0',               gradient: false },
                 { text: 'MIND',    color: '',                       gradient: true  },
                 { text: 'WAKES',   color: 'rgba(240,240,240,0.3)', gradient: false },
@@ -235,10 +222,10 @@ export default function ArtificialMind() {
             </div>
 
             {/* Body */}
-            <div ref={bodyRef} className="font-serif mt-7"
-              style={{ opacity: 0, fontSize: 'clamp(0.9rem, 1.7vw, 1.2rem)',
-                fontStyle: 'italic', color: 'rgba(240,240,240,0.4)',
-                lineHeight: 1.75, maxWidth: '400px' }}
+            <div ref={bodyRef} className="font-serif mt-6"
+              style={{ opacity: 0, fontSize: 'clamp(0.9rem, 1.7vw, 1.1rem)',
+                fontStyle: 'italic', color: 'rgba(240,240,240,0.65)',
+                lineHeight: 1.75, maxWidth: '420px' }}
             >
               Intelligence is no longer exclusively biological.
               We have encoded the architecture of thought into silicon —
@@ -246,18 +233,18 @@ export default function ArtificialMind() {
             </div>
 
             {/* Metrics */}
-            <div ref={metricsRef} className="font-mono-dm mt-8 flex gap-6"
+            <div ref={metricsRef} className="font-mono-dm mt-7 flex gap-8"
               style={{ fontSize: '0.6rem', letterSpacing: '0.15em' }}
             >
               {[
-                { v: '1T+',    l: 'PARAMETERS' },
-                { v: '100×',   l: 'YOY COMPUTE' },
-                { v: '< 2YR',  l: 'TO NEXT LEAP' },
+                { v: '1T+',   l: 'PARAMETERS' },
+                { v: '100×',  l: 'YOY COMPUTE' },
+                { v: '< 2YR', l: 'TO NEXT LEAP' },
               ].map(({ v, l }) => (
                 <div key={l} className="metric-item flex flex-col gap-1" style={{ opacity: 0 }}>
-                  <span style={{ color: '#f59e0b', fontSize: '1.1rem',
+                  <span style={{ color: '#f59e0b', fontSize: '1.2rem',
                     letterSpacing: '-0.02em', fontWeight: 400 }}>{v}</span>
-                  <span style={{ color: 'rgba(240,240,240,0.25)' }}>{l}</span>
+                  <span style={{ color: 'rgba(240,240,240,0.5)' }}>{l}</span>
                 </div>
               ))}
             </div>
@@ -284,54 +271,19 @@ export default function ArtificialMind() {
                 <div>
                   <div style={{ fontSize: '0.55rem', color: '#f59e0b',
                     letterSpacing: '0.2em', marginBottom: '3px' }}>{year}</div>
-                  <div style={{ fontSize: '0.6rem', color: 'rgba(240,240,240,0.5)',
+                  <div style={{ fontSize: '0.6rem', color: 'rgba(240,240,240,0.7)',
                     lineHeight: 1.5 }}>{event}</div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* ── Network layer labels (bottom of canvas) ────────────────────── */}
-          <div ref={layerLabels}
-            className="absolute inset-x-0 font-mono-dm"
-            style={{ bottom: '6rem', display: 'flex', justifyContent: 'flex-start', gap: 0 }}
-          >
-            {LAYERS.map(({ label, sub, x }) => (
-              <div key={label} className="layer-label absolute text-center"
-                style={{ left: x, transform: 'translateX(-50%)', opacity: 0 }}
-              >
-                <div style={{ fontSize: '0.5rem', letterSpacing: '0.25em',
-                  color: 'rgba(245,158,11,0.6)', textTransform: 'uppercase' }}>{label}</div>
-                <div style={{ fontSize: '0.45rem', letterSpacing: '0.15em',
-                  color: 'rgba(240,240,240,0.2)', marginTop: '2px' }}>{sub}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* ── Terminal readout (top right) ───────────────────────────────── */}
-          <div className="absolute font-mono-dm"
-            style={{ top: '2rem', right: '2.5rem', textAlign: 'right',
-              fontSize: '0.55rem', letterSpacing: '0.15em',
-              color: 'rgba(245,158,11,0.4)', textTransform: 'uppercase', lineHeight: 2 }}
-          >
-            <div style={{ color: '#f59e0b' }}>● SYSTEM ACTIVE</div>
-            <div>LAYERS: 5</div>
-            <div>NEURONS: 37</div>
-            <div>FIRING: CONTINUOUS</div>
-          </div>
-
           {/* ── Section marker ─────────────────────────────────────────────── */}
           <div className="absolute font-mono-dm"
             style={{ bottom: '2rem', left: '2.5rem', fontSize: '0.55rem',
-              letterSpacing: '0.3em', color: 'rgba(240,240,240,0.15)', textTransform: 'uppercase' }}
+              letterSpacing: '0.3em', color: 'rgba(240,240,240,0.3)', textTransform: 'uppercase' }}
           >
-            THE EVOLUTION OF INTELLIGENCE — 04 / 06
-          </div>
-          <div className="absolute font-mono-dm"
-            style={{ bottom: '2rem', right: '2.5rem', fontSize: '0.55rem',
-              letterSpacing: '0.25em', color: 'rgba(245,158,11,0.35)', textTransform: 'uppercase' }}
-          >
-            ARTIFICIAL GENERAL INTELLIGENCE
+            04 / 06 — ARTIFICIAL INTELLIGENCE
           </div>
 
         </div>
