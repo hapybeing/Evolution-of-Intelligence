@@ -148,7 +148,7 @@ export default function LifeEmerges() {
       ref={sectionRef}
       className="section-full"
       style={{
-        minHeight: '200vh',
+        minHeight: '160vh',
         background: '#000d07',
         alignItems: 'flex-start',
         flexDirection: 'column',
@@ -159,7 +159,7 @@ export default function LifeEmerges() {
       }}
     >
       {/* Sticky viewport */}
-      <div style={{ position: 'sticky', top: 0, width: '100%', height: '100vh', overflow: 'hidden' }}>
+      <div style={{ position: 'sticky', top: 0, width: '100%', height: '100vh', overflow: 'clip' }}>
 
         {/* Canvas */}
         <div className="canvas-layer" style={{ background: '#000d07' }}>
