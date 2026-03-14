@@ -339,6 +339,14 @@ html.lenis body {
   100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
 }
 
+/* ─── Landscape-only: hide right-column overlays on portrait devices ─────── */
+@media (orientation: portrait) {
+  .landscape-only { display: none !important; }
+}
+@media (orientation: landscape) {
+  .landscape-only { display: block; }
+}
+
 /* ─── Utility: No Select ─────────────────────────────────────────────────── */
 .no-select {
   -webkit-user-select: none;
