@@ -236,26 +236,58 @@ function Particles({ count = 80000, scrollProgress, mousePos }: ParticlesProps) 
   );
 }
 
-// ─── Nebula glow (large soft spheres of light) ────────────────────────────
+// ─── Nebula glow (sprite-based soft light blooms — no geometry artifacts) ────
+
+const NEBULA_VERT = /* glsl */`
+  void main() {
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+const NEBULA_FRAG = /* glsl */`
+  uniform vec3  uColor;
+  uniform vec2  uResolution;
+  uniform vec3  uCenter;
+  uniform mat4  uModelViewMatrix;
+  uniform mat4  uProjectionMatrix;
+  uniform float uRadius;
+  uniform float uOpacity;
+
+  void main() {
+    // Soft radial gradient in screen space
+    vec2 uv = (gl_FragCoord.xy / uResolution) * 2.0 - 1.0;
+    // Project center to NDC
+    vec4 clip = uProjectionMatrix * uModelViewMatrix * vec4(uCenter, 1.0);
+    vec2 centerNDC = clip.xy / clip.w;
+    float aspect = uResolution.x / uResolution.y;
+    vec2 diff = (uv - centerNDC) * vec2(aspect, 1.0);
+    float dist = length(diff);
+    float falloff = 1.0 - smoothstep(0.0, uRadius, dist);
+    falloff = pow(falloff, 3.0);
+    gl_FragColor = vec4(uColor, falloff * uOpacity);
+  }
+`;
 
 function NebulaGlow() {
+  // Use simple additive point lights via large transparent planes
   const glows = useMemo(() => [
-    { pos: [-2.5, 0.5, -2] as [number, number, number], color: '#7c3aed', size: 3.5, opacity: 0.06 },
-    { pos: [2.0, -0.5, -3] as [number, number, number], color: '#06b6d4', size: 3.0, opacity: 0.05 },
-    { pos: [0.0, 1.5, -4]  as [number, number, number], color: '#ec4899', size: 2.5, opacity: 0.04 },
+    { pos: [-3.0, 1.0, -5] as [number, number, number], color: new THREE.Color('#7c3aed'), size: 12, opacity: 0.18 },
+    { pos: [ 3.5,-1.0, -6] as [number, number, number], color: new THREE.Color('#06b6d4'), size: 10, opacity: 0.14 },
+    { pos: [ 0.0, 2.0, -7] as [number, number, number], color: new THREE.Color('#ec4899'), size: 8,  opacity: 0.10 },
   ], []);
 
   return (
     <>
       {glows.map((g, i) => (
-        <mesh key={i} position={g.pos}>
-          <sphereGeometry args={[g.size, 16, 16]} />
+        <mesh key={i} position={g.pos} renderOrder={-1}>
+          <planeGeometry args={[g.size, g.size]} />
           <meshBasicMaterial
             color={g.color}
             transparent
             opacity={g.opacity}
-            side={THREE.BackSide}
             depthWrite={false}
+            depthTest={false}
+            blending={THREE.AdditiveBlending}
           />
         </mesh>
       ))}
