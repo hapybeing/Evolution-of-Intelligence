@@ -161,6 +161,7 @@ export default function ArtificialMind() {
         minHeight: '220vh',
         background: '#080400',
         alignItems: 'flex-start',
+        flexDirection: 'column',
         isolation: 'isolate',
         zIndex: 4,
         position: 'relative',
