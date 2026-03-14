@@ -151,6 +151,7 @@ export default function LifeEmerges() {
         minHeight: '200vh',
         background: '#000d07',
         alignItems: 'flex-start',
+        flexDirection: 'column',
         isolation: 'isolate',
         zIndex: 2,
         position: 'relative',
