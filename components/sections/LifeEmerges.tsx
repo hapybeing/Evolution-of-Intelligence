@@ -150,6 +150,9 @@ export default function LifeEmerges() {
         minHeight: '200vh',
         background: 'radial-gradient(ellipse at 30% 60%, #0a2e1f 0%, #030d08 50%, #000000 100%)',
         alignItems: 'flex-start',
+        isolation: 'isolate',
+        zIndex: 2,
+        position: 'relative',
       }}
     >
       {/* Sticky viewport */}
@@ -170,13 +173,14 @@ export default function LifeEmerges() {
           }}
         />
 
-        {/* ── Top separator from Hero ───────────────────────────────────── */}
+        {/* ── Cross-section bridge — eliminates blank gap from Hero ────── */}
         <div
           aria-hidden
-          className="absolute top-0 inset-x-0 h-32 pointer-events-none"
+          className="absolute top-0 inset-x-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: 'linear-gradient(to bottom, #000000, transparent)',
+            height: '35vh',
+            background: 'linear-gradient(to bottom, #000000 0%, #010f07 60%, transparent 100%)',
           }}
         />
 
