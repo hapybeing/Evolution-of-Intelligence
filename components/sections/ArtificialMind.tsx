@@ -263,9 +263,9 @@ export default function ArtificialMind() {
             </div>
           </div>
 
-          {/* ── Right: timeline ────────────────────────────────────────────── */}
+          {/* ── Right: timeline — landscape only ───────────────────────────── */}
           <div ref={timelineRef}
-            className="absolute font-mono-dm"
+            className="absolute font-mono-dm landscape-only"
             style={{ right: '4vw', top: '50%', transform: 'translateY(-50%)',
               width: 'clamp(180px, 22vw, 280px)' }}
           >
