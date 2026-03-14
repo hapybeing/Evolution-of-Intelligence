@@ -3,6 +3,7 @@
 import { useRef, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import LazyCanvas from '@/components/core/LazyCanvas';
 
 // ─── Inline GLSL — avoids raw-loader/Vercel build issues entirely ─────────
 
@@ -304,31 +305,16 @@ interface CosmicCanvasProps {
 
 export default function CosmicCanvas({ scrollProgress, mousePos }: CosmicCanvasProps) {
   return (
-    <Canvas
-      camera={{
-        position: [0, 0, 8],
-        fov: 60,
-        near: 0.1,
-        far: 100,
-      }}
-      gl={{
-        antialias: false,
-        alpha: false,
-        powerPreference: 'high-performance',
-      }}
-      dpr={[1, 2]}
-      style={{
-        position: 'absolute',
-        inset: 0,
-        background: '#000000',
-      }}
-    >
-      <NebulaGlow />
-      <Particles
-        count={80000}
-        scrollProgress={scrollProgress}
-        mousePos={mousePos}
-      />
-    </Canvas>
+    <LazyCanvas bg="#000000" rootMargin="300px">
+      <Canvas
+        camera={{ position: [0, 0, 8], fov: 60, near: 0.1, far: 100 }}
+        gl={{ antialias: false, alpha: false, powerPreference: 'high-performance' }}
+        dpr={[1, 1.5]}
+        style={{ position: 'absolute', inset: 0, background: '#000000' }}
+      >
+        <NebulaGlow />
+        <Particles count={80000} scrollProgress={scrollProgress} mousePos={mousePos} />
+      </Canvas>
+    </LazyCanvas>
   );
 }
