@@ -295,11 +295,13 @@ export default function Hero() {
 
           {/* ── Center content ─────────────────────────────────────────── */}
           <div
-            className="flex flex-col items-center justify-center"
+            className="flex flex-col items-center"
             style={{
               flex: 1,
-              paddingTop: '4rem',
+              justifyContent: 'flex-start',
+              paddingTop: 'clamp(4rem, 15vh, 8rem)',
               perspective: '800px',
+              overflowY: 'visible',
             }}
           >
             {/* Tagline */}
@@ -320,7 +322,7 @@ export default function Hero() {
               ref={headlineRef}
               className="font-display text-center no-select"
               style={{
-                fontSize: 'clamp(3.5rem, 11vw, 13rem)',
+                fontSize: 'clamp(2.5rem, min(11vw, 14vh), 11rem)',
                 fontWeight: 800,
                 lineHeight: 0.9,
                 letterSpacing: '-0.04em',
