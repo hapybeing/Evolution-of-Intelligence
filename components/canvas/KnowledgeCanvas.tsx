@@ -268,7 +268,7 @@ export default function KnowledgeCanvas({ scrollProgress: _ }: KnowledgeCanvasPr
   return (
     <LazyCanvas bg="#03080f" rootMargin="300px">
       <Canvas
-        camera={{ position: [0, 0, 7], fov: 58, near: 0.1, far: 100 }}
+        camera={{ position: [0, 0, 9], fov: 58, near: 0.1, far: 100 }}
         gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
         dpr={[1, 1.5]}
         style={{ position: 'absolute', inset: 0, background: '#03080f' }}
