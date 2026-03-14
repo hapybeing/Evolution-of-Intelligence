@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TransitionPanel from '@/components/core/TransitionPanel';
 
 // Dynamically load the heavy WebGL canvas — never SSR
 const CosmicCanvas = dynamic(
@@ -437,6 +438,17 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* ── Transition panel — fills scroll overhang ─────────────────────── */}
+      <TransitionPanel
+        chapter="I"
+        label="Cosmic Origins — 13.8 billion years ago"
+        statement="Everything that exists was once compressed into a space smaller than an atom."
+        accent="smaller than an atom"
+        annotation="The Big Bang was not an explosion in space — it was an explosion of space itself. Every particle, every force, every law of physics emerged from a single quantum event of infinite density."
+        color="#7c3aed"
+        bg="#000000"
+      />
     </section>
   );
 }
