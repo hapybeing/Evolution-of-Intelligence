@@ -194,7 +194,7 @@ export default function Hero() {
       ref={sectionRef}
       className="section-full"
       style={{
-        minHeight: '220vh',
+        minHeight: '160vh',
         background: 'radial-gradient(ellipse at 50% 40%, #1a0533 0%, #0a0015 45%, #000000 100%)',
         alignItems: 'flex-start',
         flexDirection: 'column',
@@ -210,7 +210,7 @@ export default function Hero() {
           top: 0,
           width: '100%',
           height: '100vh',
-          overflow: 'hidden',
+          overflow: 'clip',
         }}
       >
         {/* Canvas layer — dark bg guaranteed even before WebGL loads */}
