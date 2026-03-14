@@ -19,35 +19,39 @@ export default function AmbientAudio() {
     audio.volume = 0;
     audioRef.current = audio;
 
-    // Show button after a short delay
-    const timer = setTimeout(() => setVisible(true), 2000);
+    // Show button immediately
+    setVisible(true);
 
-    // Auto-attempt play on first user interaction
-    const onFirstInteraction = () => {
+    // Start playing on first any user interaction (scroll, click, touch)
+    const startAudio = () => {
       if (hasStarted.current) return;
       hasStarted.current = true;
       audio.play().then(() => {
         setPlaying(true);
-        gsap.to(audio, { volume: 0.35, duration: 3 });
-      }).catch(() => {
-        // Browser blocked autoplay — user must click the button
-      });
-      window.removeEventListener('click', onFirstInteraction);
-      window.removeEventListener('touchstart', onFirstInteraction);
-      window.removeEventListener('scroll', onFirstInteraction);
+        gsap.to(audio, { volume: 0.4, duration: 2.5 });
+      }).catch(() => {});
+      window.removeEventListener('click',      startAudio);
+      window.removeEventListener('touchstart', startAudio);
+      window.removeEventListener('scroll',     startAudio);
+      window.removeEventListener('keydown',    startAudio);
     };
 
-    window.addEventListener('click', onFirstInteraction, { once: true });
-    window.addEventListener('touchstart', onFirstInteraction, { once: true });
-    window.addEventListener('scroll', onFirstInteraction, { once: true, passive: true });
+    // Try immediate autoplay first (works if user already interacted with page)
+    audio.play().then(() => {
+      hasStarted.current = true;
+      setPlaying(true);
+      gsap.to(audio, { volume: 0.4, duration: 2.5 });
+    }).catch(() => {
+      // Browser blocked — wait for first interaction
+      window.addEventListener('click',      startAudio, { once: true });
+      window.addEventListener('touchstart', startAudio, { once: true });
+      window.addEventListener('scroll',     startAudio, { once: true, passive: true });
+      window.addEventListener('keydown',    startAudio, { once: true });
+    });
 
     return () => {
-      clearTimeout(timer);
       audio.pause();
       audio.src = '';
-      window.removeEventListener('click', onFirstInteraction);
-      window.removeEventListener('touchstart', onFirstInteraction);
-      window.removeEventListener('scroll', onFirstInteraction);
     };
   }, []);
 
