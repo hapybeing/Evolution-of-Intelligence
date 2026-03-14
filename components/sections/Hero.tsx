@@ -211,8 +211,8 @@ export default function Hero() {
           overflow: 'hidden',
         }}
       >
-        {/* Canvas layer */}
-        <div className="canvas-layer">
+        {/* Canvas layer — dark bg guaranteed even before WebGL loads */}
+        <div className="canvas-layer" style={{ background: '#000000' }}>
           {mounted && (
             <CosmicCanvas
               scrollProgress={scrollProgress}
