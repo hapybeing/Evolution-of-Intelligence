@@ -164,7 +164,7 @@ export default function HumanMind() {
       <div style={{ position: 'sticky', top: 0, width: '100%', height: '100vh', overflow: 'hidden' }}>
 
         {/* Canvas */}
-        <div className="canvas-layer">
+        <div className="canvas-layer" style={{ background: '#03080f' }}>
           {mounted && <KnowledgeCanvas scrollProgress={scrollProgress} />}
         </div>
 
