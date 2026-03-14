@@ -152,7 +152,7 @@ export default function HumanMind() {
       ref={sectionRef}
       className="section-full"
       style={{
-        minHeight: '220vh',
+        minHeight: '160vh',
         background: '#03080f',
         alignItems: 'flex-start',
         flexDirection: 'column',
@@ -163,7 +163,7 @@ export default function HumanMind() {
       }}
     >
       {/* Sticky viewport */}
-      <div style={{ position: 'sticky', top: 0, width: '100%', height: '100vh', overflow: 'hidden' }}>
+      <div style={{ position: 'sticky', top: 0, width: '100%', height: '100vh', overflow: 'clip' }}>
 
         {/* Canvas */}
         <div className="canvas-layer" style={{ background: '#03080f' }}>
