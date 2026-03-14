@@ -105,31 +105,6 @@ export default function HumanMind() {
         );
       }
 
-      // Word wall rows — alternate directions
-      const rows = wordWallRef.current?.querySelectorAll('.word-row');
-      rows?.forEach((row, i) => {
-        const dir = i % 2 === 0 ? '-10%' : '10%';
-        gsap.fromTo(row,
-          { x: dir, opacity: 0 },
-          { x: '0%', opacity: 1, duration: 1.2, ease: 'expo.out',
-            scrollTrigger: { trigger: sectionRef.current, start: 'top 60%',
-              onLeaveBack: () => gsap.set(row, { x: dir, opacity: 0 }) }
-          }
-        );
-
-        // Continuous drift on scroll
-        gsap.to(row, {
-          x: i % 2 === 0 ? '-8%' : '8%',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.5,
-          },
-        });
-      });
-
     }, sectionRef);
 
     return () => ctx.revert();
@@ -174,12 +149,13 @@ export default function HumanMind() {
         <div className="content-layer absolute inset-0 flex" style={{ zIndex: 3 }}>
 
           {/* ── Left column ────────────────────────────────────────────────── */}
-          <div className="flex flex-col justify-center"
+          <div className="flex flex-col justify-flex-start"
             style={{
               paddingLeft: 'clamp(1.5rem, 5vw, 5rem)',
               paddingRight: '2rem',
-              width: '52%',
-              paddingTop: 'clamp(1rem, 6vh, 3rem)',
+              width: '100%',
+              maxWidth: '540px',
+              paddingTop: 'clamp(4rem, 10vh, 6rem)',
             }}
           >
             {/* Label */}
@@ -202,7 +178,7 @@ export default function HumanMind() {
               ].map(({ text, color, gradient }, i) => (
                 <div key={i} className="h-word block" style={{
                   opacity: 0,
-                  paddingLeft: i === 2 ? '2vw' : i === 3 ? '5vw' : 0,
+                  paddingLeft: i === 2 ? '2vw' : 0,
                   ...(gradient ? {
                     background: 'linear-gradient(135deg, #06b6d4 0%, #f59e0b 100%)',
                     WebkitBackgroundClip: 'text',
@@ -216,10 +192,10 @@ export default function HumanMind() {
             </div>
 
             {/* Body */}
-            <div ref={bodyRef} className="font-serif mt-7"
-              style={{ opacity: 0, fontSize: 'clamp(0.9rem, 1.7vw, 1.2rem)',
-                fontStyle: 'italic', color: 'rgba(240,240,240,0.4)',
-                lineHeight: 1.75, maxWidth: '400px' }}
+            <div ref={bodyRef} className="font-serif mt-6"
+              style={{ opacity: 0, fontSize: 'clamp(0.9rem, 1.7vw, 1.1rem)',
+                fontStyle: 'italic', color: 'rgba(240,240,240,0.65)',
+                lineHeight: 1.75, maxWidth: '420px' }}
             >
               Humans became the first species to externalize their minds —
               storing knowledge outside the skull. Language. Writing. Printing.
@@ -227,7 +203,7 @@ export default function HumanMind() {
             </div>
 
             {/* Stats */}
-            <div ref={statsRef} className="font-mono-dm mt-8 flex gap-6"
+            <div ref={statsRef} className="font-mono-dm mt-7 flex gap-8"
               style={{ fontSize: '0.6rem', letterSpacing: '0.15em' }}
             >
               {[
@@ -236,9 +212,9 @@ export default function HumanMind() {
                 { v: '5B',     l: 'INTERNET USERS' },
               ].map(({ v, l }) => (
                 <div key={l} className="stat-item flex flex-col gap-1" style={{ opacity: 0 }}>
-                  <span style={{ color: '#06b6d4', fontSize: '1.1rem',
+                  <span style={{ color: '#06b6d4', fontSize: '1.2rem',
                     letterSpacing: '-0.02em', fontWeight: 400 }}>{v}</span>
-                  <span style={{ color: 'rgba(240,240,240,0.25)' }}>{l}</span>
+                  <span style={{ color: 'rgba(240,240,240,0.5)' }}>{l}</span>
                 </div>
               ))}
             </div>
@@ -250,16 +226,13 @@ export default function HumanMind() {
             style={{ right: '4vw', top: '50%', transform: 'translateY(-50%)',
               width: 'clamp(180px, 22vw, 280px)' }}
           >
-            {/* Timeline connector line */}
             <div style={{ position: 'absolute', left: '5px', top: 0, bottom: 0,
               width: '1px', background: 'linear-gradient(to bottom, transparent, #06b6d4, transparent)' }}
             />
-
             {MILESTONES.map(({ year, event }, i) => (
               <div key={year} className="t-item flex items-start gap-4 mb-5"
                 style={{ opacity: 0, paddingLeft: '20px', position: 'relative' }}
               >
-                {/* Node on timeline */}
                 <div style={{ position: 'absolute', left: '1px', top: '4px',
                   width: '9px', height: '9px', borderRadius: '50%',
                   background: i === MILESTONES.length - 1 ? '#f59e0b' : '#06b6d4',
@@ -269,71 +242,20 @@ export default function HumanMind() {
                 <div>
                   <div style={{ fontSize: '0.55rem', color: '#f59e0b',
                     letterSpacing: '0.2em', marginBottom: '3px' }}>{year}</div>
-                  <div style={{ fontSize: '0.62rem', color: 'rgba(240,240,240,0.55)',
+                  <div style={{ fontSize: '0.62rem', color: 'rgba(240,240,240,0.7)',
                     lineHeight: 1.5, letterSpacing: '0.05em' }}>{event}</div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* ── Word wall (bottom strip) ────────────────────────────────────── */}
-          <div ref={wordWallRef}
-            className="absolute bottom-0 inset-x-0 overflow-hidden"
-            style={{ zIndex: 4, paddingBottom: '2.5rem' }}
-          >
-            {WORD_ROWS.map((row, ri) => (
-              <div key={ri} className="word-row flex gap-6 mb-1"
-                style={{
-                  opacity: 0,
-                  whiteSpace: 'nowrap',
-                  paddingLeft: ri % 2 === 0 ? '0' : '3rem',
-                }}
-              >
-                {row.map((word) => (
-                  <span key={word} className="font-display no-select"
-                    style={{
-                      fontSize: 'clamp(0.7rem, 1.4vw, 1.1rem)',
-                      fontWeight: 700,
-                      letterSpacing: '0.1em',
-                      color: ri === 3
-                        ? 'rgba(245,158,11,0.25)'
-                        : 'rgba(6,182,212,0.15)',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    {word}
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-
-          {/* ── Floating graph label ───────────────────────────────────────── */}
-          <div className="absolute font-mono-dm"
-            style={{ top: '2rem', right: '2.5rem', textAlign: 'right',
-              fontSize: '0.55rem', letterSpacing: '0.2em',
-              color: 'rgba(6,182,212,0.35)', textTransform: 'uppercase' }}
-          >
-            <div>15 CONCEPTS</div>
-            <div style={{ color: 'rgba(245,158,11,0.35)', marginTop: '4px' }}>
-              28 CONNECTIONS
-            </div>
-          </div>
-
           {/* ── Section marker ─────────────────────────────────────────────── */}
           <div className="absolute font-mono-dm"
             style={{ bottom: '2rem', left: '2.5rem', fontSize: '0.55rem',
-              letterSpacing: '0.3em', color: 'rgba(240,240,240,0.15)', textTransform: 'uppercase' }}
+              letterSpacing: '0.3em', color: 'rgba(240,240,240,0.3)', textTransform: 'uppercase' }}
           >
-            THE EVOLUTION OF INTELLIGENCE — 03 / 06
+            03 / 06 — HUMAN CONSCIOUSNESS
           </div>
-          <div className="absolute font-mono-dm"
-            style={{ bottom: '2rem', right: '2.5rem', fontSize: '0.55rem',
-              letterSpacing: '0.25em', color: 'rgba(6,182,212,0.35)', textTransform: 'uppercase' }}
-          >
-            HOMO SAPIENS SAPIENS
-          </div>
-
         </div>
       </div>
 
