@@ -3,6 +3,7 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import LazyCanvas from '@/components/core/LazyCanvas';
 
 // ─── Inline GLSL ──────────────────────────────────────────────────────────────
 
@@ -354,19 +355,17 @@ interface BioCanvasProps {
 
 export default function BioCanvas({ scrollProgress }: BioCanvasProps) {
   return (
-    <Canvas
-      camera={{ position: [0, 0, 5], fov: 55, near: 0.1, far: 100 }}
-      gl={{
-        antialias: true,
-        alpha: false,
-        powerPreference: 'high-performance',
-      }}
-      dpr={[1, 2]}
-      style={{ position: 'absolute', inset: 0, background: '#000d07' }}
-    >
-      <BioGlow />
-      <Cell scrollProgress={scrollProgress} />
-      <Spores count={3000} />
-    </Canvas>
+    <LazyCanvas bg="#000d07" rootMargin="300px">
+      <Canvas
+        camera={{ position: [0, 0, 5], fov: 55, near: 0.1, far: 100 }}
+        gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
+        dpr={[1, 1.5]}
+        style={{ position: 'absolute', inset: 0, background: '#000d07' }}
+      >
+        <BioGlow />
+        <Cell scrollProgress={scrollProgress} />
+        <Spores count={3000} />
+      </Canvas>
+    </LazyCanvas>
   );
 }
