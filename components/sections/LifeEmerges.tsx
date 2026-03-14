@@ -148,11 +148,12 @@ export default function LifeEmerges() {
       className="section-full"
       style={{
         minHeight: '200vh',
-        background: 'radial-gradient(ellipse at 30% 60%, #0a2e1f 0%, #030d08 50%, #000000 100%)',
+        background: '#000d07',
         alignItems: 'flex-start',
         isolation: 'isolate',
         zIndex: 2,
         position: 'relative',
+        marginTop: '-2px',
       }}
     >
       {/* Sticky viewport */}
