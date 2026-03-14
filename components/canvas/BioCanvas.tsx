@@ -358,11 +358,11 @@ export default function BioCanvas({ scrollProgress }: BioCanvasProps) {
       camera={{ position: [0, 0, 5], fov: 55, near: 0.1, far: 100 }}
       gl={{
         antialias: true,
-        alpha: true,
+        alpha: false,
         powerPreference: 'high-performance',
       }}
       dpr={[1, 2]}
-      style={{ position: 'absolute', inset: 0, background: 'transparent' }}
+      style={{ position: 'absolute', inset: 0, background: '#000d07' }}
     >
       <BioGlow />
       <Cell scrollProgress={scrollProgress} />
