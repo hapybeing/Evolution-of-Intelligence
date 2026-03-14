@@ -131,7 +131,7 @@ export default function LifeEmerges() {
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: '70% center',
+          start: '92% center',
           end: 'bottom top',
           scrub: 1.2,
         },
