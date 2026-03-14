@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TransitionPanel from '@/components/core/TransitionPanel';
 
 const KnowledgeCanvas = dynamic(
   () => import('@/components/canvas/KnowledgeCanvas'),
@@ -346,6 +347,17 @@ export default function HumanMind() {
 
         </div>
       </div>
+
+      {/* ── Transition panel ─────────────────────────────────────────────── */}
+      <TransitionPanel
+        chapter="III"
+        label="Human Consciousness — the universe becoming aware of itself"
+        statement="For the first time in 13.8 billion years, the cosmos opened its eyes."
+        accent="opened its eyes"
+        annotation="Human consciousness is not separate from the universe — it is the universe reflecting on its own existence. We are the mechanism by which matter contemplates matter."
+        color="#06b6d4"
+        bg="#03080f"
+      />
     </section>
   );
 }
