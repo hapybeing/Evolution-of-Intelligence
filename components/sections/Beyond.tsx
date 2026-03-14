@@ -231,7 +231,6 @@ export default function Beyond() {
       </div>
 
       <TransitionPanel
-        chapter="V"
         label="Beyond Intelligence — the horizon we cannot see past"
         statement="The most profound technologies are those that disappear into the fabric of existence."
         accent="disappear into the fabric of existence"
