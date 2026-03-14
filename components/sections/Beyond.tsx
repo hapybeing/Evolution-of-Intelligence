@@ -138,10 +138,9 @@ export default function Beyond() {
                 lineHeight: 0.88, letterSpacing: '-0.04em', perspective: '800px' }}
             >
               {[
-                { text: 'BE-',    color: '#f0f0f0' },
-                { text: 'YOND',   gradient: true },
-                { text: 'INTELLI-', color: '#f0f0f0' },
-                { text: 'GENCE', color: 'rgba(240,240,240,0.25)' },
+                { text: 'BEYOND',      gradient: true },
+                { text: 'INTELLI-',    color: '#f0f0f0' },
+                { text: 'GENCE',       color: 'rgba(240,240,240,0.25)' },
               ].map(({ text, color, gradient }, i) => (
                 <div key={i} className="bw block" style={{
                   opacity: 0,
@@ -183,9 +182,9 @@ export default function Beyond() {
             </div>
           </div>
 
-          {/* Right: speculation list */}
+          {/* Right: speculation list — landscape only */}
           <div ref={specsRef}
-            className="absolute font-mono-dm"
+            className="absolute font-mono-dm landscape-only"
             style={{ right: '4vw', top: '50%', transform: 'translateY(-50%)',
               width: 'clamp(200px, 25vw, 320px)' }}
           >
