@@ -196,10 +196,9 @@ export default function HumanMind() {
                 lineHeight: 0.88, letterSpacing: '-0.04em', perspective: '800px' }}
             >
               {[
-                { text: 'THE',    color: '#f0f0f0' },
-                { text: 'CON-',   color: '#f0f0f0' },
-                { text: 'SCIOUS', gradient: true },
-                { text: 'MIND',   color: 'rgba(240,240,240,0.35)' },
+                { text: 'THE',       color: '#f0f0f0' },
+                { text: 'CONSCIOUS', gradient: true },
+                { text: 'MIND',      color: 'rgba(240,240,240,0.35)' },
               ].map(({ text, color, gradient }, i) => (
                 <div key={i} className="h-word block" style={{
                   opacity: 0,
@@ -245,9 +244,9 @@ export default function HumanMind() {
             </div>
           </div>
 
-          {/* ── Right column: timeline ─────────────────────────────────────── */}
+          {/* ── Right column: timeline — landscape only ────────────────────── */}
           <div ref={timelineRef}
-            className="absolute font-mono-dm"
+            className="absolute font-mono-dm landscape-only"
             style={{ right: '4vw', top: '50%', transform: 'translateY(-50%)',
               width: 'clamp(180px, 22vw, 280px)' }}
           >
