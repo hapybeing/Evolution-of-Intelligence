@@ -138,7 +138,7 @@ export default function Outro() {
         className="content-layer relative flex flex-col items-center text-center"
         style={{
           zIndex: 2,
-          padding: 'clamp(4rem, 10vw, 10rem) clamp(1.5rem, 6vw, 8rem)',
+          padding: 'clamp(2rem, 5vw, 5rem) clamp(1.5rem, 6vw, 8rem)',
           maxWidth: '900px',
           margin: '0 auto',
         }}
