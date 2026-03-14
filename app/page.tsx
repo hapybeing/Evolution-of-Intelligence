@@ -12,7 +12,7 @@ const SmoothScroll = dynamic(() => import('@/components/core/SmoothScroll'), { s
 // ── Sections (uncomment as they are built) ────────────────────────────────
 const Hero          = dynamic(() => import('@/components/sections/Hero'),          { ssr: false });
 const LifeEmerges   = dynamic(() => import('@/components/sections/LifeEmerges'),   { ssr: false });
-// const HumanMind     = dynamic(() => import('@/components/sections/HumanMind'),     { ssr: false });
+const HumanMind     = dynamic(() => import('@/components/sections/HumanMind'),     { ssr: false });
 // const ArtificialMind= dynamic(() => import('@/components/sections/ArtificialMind'),{ ssr: false });
 // const Beyond        = dynamic(() => import('@/components/sections/Beyond'),        { ssr: false });
 // const Outro         = dynamic(() => import('@/components/sections/Outro'),         { ssr: false });
@@ -45,7 +45,8 @@ export default function Home() {
           {/* Sections uncommented one by one as they are built */}
           {loaderDone && <Hero />}
           {loaderDone && <LifeEmerges />}
-          {/* <HumanMind />      */}
+          {loaderDone && <HumanMind />}
+          {/* <ArtificialMind /> */}
           {/* <ArtificialMind /> */}
           {/* <Beyond />         */}
           {/* <Outro />          */}
