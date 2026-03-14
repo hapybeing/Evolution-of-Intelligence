@@ -95,8 +95,8 @@ export default function TransitionPanel({
   const renderStatement = () => {
     if (!accent) {
       return statement.split(' ').map((word, i) => (
-        <span key={i} className="tp-word inline-block mr-[0.25em]"
-          style={{ opacity: 0, display: 'inline-block' }}>
+        <span key={i} className="tp-word"
+          style={{ opacity: 0, display: 'inline-block', marginRight: '0.28em' }}>
           {word}
         </span>
       ));
@@ -106,16 +106,17 @@ export default function TransitionPanel({
     return parts.map((part, i) => (
       <span key={i}>
         {part.split(' ').filter(Boolean).map((word, j) => (
-          <span key={j} className="tp-word inline-block mr-[0.25em]"
-            style={{ opacity: 0, display: 'inline-block' }}>
+          <span key={j} className="tp-word"
+            style={{ opacity: 0, display: 'inline-block', marginRight: '0.28em' }}>
             {word}
           </span>
         ))}
         {i < parts.length - 1 && (
-          <span className="tp-word inline-block mr-[0.25em]"
+          <span className="tp-word"
             style={{
               opacity: 0,
               display: 'inline-block',
+              marginRight: '0.28em',
               color,
               textShadow: `0 0 30px ${color}80`,
             }}>
