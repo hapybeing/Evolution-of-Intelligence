@@ -155,6 +155,7 @@ export default function HumanMind() {
         minHeight: '220vh',
         background: '#03080f',
         alignItems: 'flex-start',
+        flexDirection: 'column',
         isolation: 'isolate',
         zIndex: 3,
         position: 'relative',
