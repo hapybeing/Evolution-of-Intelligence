@@ -351,7 +351,6 @@ export default function HumanMind() {
 
       {/* ── Transition panel ─────────────────────────────────────────────── */}
       <TransitionPanel
-        chapter="III"
         label="Human Consciousness — the universe becoming aware of itself"
         statement="For the first time in 13.8 billion years, the cosmos opened its eyes."
         accent="opened its eyes"
