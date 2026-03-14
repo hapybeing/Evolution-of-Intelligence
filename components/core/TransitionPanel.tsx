@@ -9,20 +9,12 @@ if (typeof window !== 'undefined') {
 }
 
 interface TransitionPanelProps {
-  /** Large pull-quote or statement */
   statement: string;
-  /** Small label above the statement */
   label: string;
-  /** Highlighted word/phrase within statement — wrapped in accent color */
   accent?: string;
-  /** Bottom annotation */
   annotation?: string;
-  /** Accent color hex */
   color?: string;
-  /** Background color */
   bg?: string;
-  /** Chapter number shown large in background */
-  chapter?: string;
 }
 
 export default function TransitionPanel({
@@ -32,28 +24,17 @@ export default function TransitionPanel({
   annotation,
   color = '#7c3aed',
   bg = '#000000',
-  chapter,
 }: TransitionPanelProps) {
   const panelRef     = useRef<HTMLDivElement>(null);
   const statementRef = useRef<HTMLDivElement>(null);
   const labelRef     = useRef<HTMLDivElement>(null);
   const lineRef      = useRef<HTMLDivElement>(null);
   const annotRef     = useRef<HTMLDivElement>(null);
-  const chapterRef   = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!panelRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Chapter number drifts up
-      if (chapterRef.current) {
-        gsap.fromTo(chapterRef.current,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out',
-            scrollTrigger: { trigger: panelRef.current, start: 'top 80%' } }
-        );
-      }
-
       // Label
       gsap.fromTo(labelRef.current,
         { opacity: 0, x: -16 },
@@ -143,33 +124,8 @@ export default function TransitionPanel({
         padding: 'clamp(2rem, 5vw, 5rem) clamp(1.5rem, 6vw, 8rem)',
       }}
     >
-      {/* Oversized chapter number in background */}
-      {chapter && (
-        <div
-          ref={chapterRef}
-          className="font-display absolute no-select pointer-events-none"
-          style={{
-            opacity: 0,
-            fontSize: 'clamp(8rem, 25vw, 22rem)',
-            fontWeight: 800,
-            letterSpacing: '-0.06em',
-            color: 'transparent',
-            WebkitTextStroke: `1px ${color}18`,
-            right: '0',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            lineHeight: 1,
-            userSelect: 'none',
-            overflow: 'hidden',
-            maxWidth: '45vw',
-          }}
-        >
-          {chapter}
-        </div>
-      )}
-
       {/* Content */}
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: '900px', width: '100%' }}>
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: '860px', width: '100%' }}>
 
         {/* Label + line */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
