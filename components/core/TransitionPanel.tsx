@@ -132,7 +132,7 @@ export default function TransitionPanel({
       ref={panelRef}
       style={{
         width: '100%',
-        minHeight: '80vh',
+        minHeight: '50vh',
         background: bg,
         display: 'flex',
         flexDirection: 'column',
@@ -140,15 +140,9 @@ export default function TransitionPanel({
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        padding: 'clamp(3rem, 8vw, 7rem) clamp(1.5rem, 6vw, 8rem)',
+        padding: 'clamp(2rem, 5vw, 5rem) clamp(1.5rem, 6vw, 8rem)',
       }}
     >
-      {/* Top bridge — fades from section bg into panel, no hard cut */}
-      <div aria-hidden style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: '35%',
-        background: `linear-gradient(to bottom, ${bg} 0%, transparent 100%)`,
-        pointerEvents: 'none', zIndex: 0,
-      }} />
       {/* Oversized chapter number in background */}
       {chapter && (
         <div
@@ -156,16 +150,18 @@ export default function TransitionPanel({
           className="font-display absolute no-select pointer-events-none"
           style={{
             opacity: 0,
-            fontSize: 'clamp(12rem, 35vw, 32rem)',
+            fontSize: 'clamp(8rem, 25vw, 22rem)',
             fontWeight: 800,
             letterSpacing: '-0.06em',
             color: 'transparent',
             WebkitTextStroke: `1px ${color}18`,
-            right: '-2vw',
+            right: '0',
             top: '50%',
             transform: 'translateY(-50%)',
             lineHeight: 1,
             userSelect: 'none',
+            overflow: 'hidden',
+            maxWidth: '45vw',
           }}
         >
           {chapter}
