@@ -138,10 +138,10 @@ export default function ArtificialMind() {
 
       // Headline out on scroll
       gsap.to(headlineRef.current, {
-        y: '-18vh', opacity: 0, ease: 'none',
+        y: '-10vh', opacity: 0, ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: '70% center',
+          start: '92% center',
           end: 'bottom top',
           scrub: 1.2,
         },
