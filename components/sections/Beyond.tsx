@@ -95,7 +95,7 @@ export default function Beyond() {
       ref={sectionRef}
       className="section-full"
       style={{
-        minHeight: '160vh',
+        minHeight: '130vh',
         background: '#06000f',
         flexDirection: 'column',
         isolation: 'isolate',
