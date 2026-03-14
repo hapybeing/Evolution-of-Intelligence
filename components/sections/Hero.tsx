@@ -193,9 +193,12 @@ export default function Hero() {
       ref={sectionRef}
       className="section-full"
       style={{
-        minHeight: '220vh',   // Extra scroll room for parallax travel
+        minHeight: '220vh',
         background: 'radial-gradient(ellipse at 50% 40%, #1a0533 0%, #0a0015 45%, #000000 100%)',
         alignItems: 'flex-start',
+        isolation: 'isolate',
+        zIndex: 1,
+        position: 'relative',
       }}
     >
       {/* ── Sticky viewport so canvas + text scroll together ─────────────── */}
