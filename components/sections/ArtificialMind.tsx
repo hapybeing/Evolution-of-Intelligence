@@ -349,7 +349,6 @@ export default function ArtificialMind() {
 
       {/* ── Transition panel ─────────────────────────────────────────────── */}
       <TransitionPanel
-        chapter="IV"
         label="Artificial Intelligence — the second genesis of mind"
         statement="We built a mirror to see our own intelligence. The mirror started thinking back."
         accent="started thinking back"
