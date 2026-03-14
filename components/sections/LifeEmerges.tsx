@@ -411,7 +411,6 @@ export default function LifeEmerges() {
 
       {/* ── Transition panel ─────────────────────────────────────────────── */}
       <TransitionPanel
-        chapter="II"
         label="Biological Complexity — 3.8 billion years of evolution"
         statement="Life did not appear. It accumulated — one mutation, one selection, one generation at a time."
         accent="accumulated"
