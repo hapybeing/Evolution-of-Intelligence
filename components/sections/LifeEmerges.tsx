@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TransitionPanel from '@/components/core/TransitionPanel';
 
 const BioCanvas = dynamic(() => import('@/components/canvas/BioCanvas'), { ssr: false });
 
@@ -406,6 +407,17 @@ export default function LifeEmerges() {
 
         </div>
       </div>
+
+      {/* ── Transition panel ─────────────────────────────────────────────── */}
+      <TransitionPanel
+        chapter="II"
+        label="Biological Complexity — 3.8 billion years of evolution"
+        statement="Life did not appear. It accumulated — one mutation, one selection, one generation at a time."
+        accent="accumulated"
+        annotation="Natural selection has no foresight, no goal, no intelligence. Yet from purely mechanical processes emerged eyes, brains, emotions, and eventually the capacity to ask why."
+        color="#10b981"
+        bg="#000d07"
+      />
 
       {/* DNA flicker animation */}
       <style jsx>{`
