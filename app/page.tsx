@@ -9,8 +9,8 @@ const CustomCursor = dynamic(() => import('@/components/core/CustomCursor'), { s
 const Navigation   = dynamic(() => import('@/components/core/Navigation'),   { ssr: false });
 const SmoothScroll = dynamic(() => import('@/components/core/SmoothScroll'), { ssr: false });
 
-// ── Sections (imported as built) ─────────────────────────────────────────
-// const Hero          = dynamic(() => import('@/components/sections/Hero'),          { ssr: false });
+// ── Sections (uncomment as they are built) ────────────────────────────────
+const Hero          = dynamic(() => import('@/components/sections/Hero'),          { ssr: false });
 // const LifeEmerges   = dynamic(() => import('@/components/sections/LifeEmerges'),   { ssr: false });
 // const HumanMind     = dynamic(() => import('@/components/sections/HumanMind'),     { ssr: false });
 // const ArtificialMind= dynamic(() => import('@/components/sections/ArtificialMind'),{ ssr: false });
@@ -22,7 +22,6 @@ export default function Home() {
 
   const handleLoaderComplete = useCallback(() => {
     setLoaderDone(true);
-    // Restore scroll after loader
     document.body.style.overflow = '';
   }, []);
 
@@ -43,47 +42,13 @@ export default function Home() {
       <SmoothScroll paused={!loaderDone}>
         <main>
 
-          {/* Sections slot in here one by one */}
-          {/* <Hero />           */}
+          {/* Sections uncommented one by one as they are built */}
+          {loaderDone && <Hero />}
           {/* <LifeEmerges />    */}
           {/* <HumanMind />      */}
           {/* <ArtificialMind /> */}
           {/* <Beyond />         */}
           {/* <Outro />          */}
-
-          {/* ── Temporary scaffold placeholder ────────────────────────── */}
-          {loaderDone && (
-            <div
-              style={{
-                minHeight: '100vh',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: '#000',
-                gap: '1rem',
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: 'var(--font-dm-mono)',
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.3em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(124, 58, 237, 0.6)',
-                }}
-              >
-                Scaffold ready — Hero section loading next
-              </p>
-              <div
-                style={{
-                  width: '1px',
-                  height: '60px',
-                  background: 'linear-gradient(to bottom, #7c3aed, transparent)',
-                }}
-              />
-            </div>
-          )}
 
         </main>
       </SmoothScroll>
