@@ -203,7 +203,7 @@ export default function ArtificialMind() {
               paddingLeft: 'clamp(1.5rem, 5vw, 5rem)',
               paddingRight: '2rem',
               width: '50%',
-              paddingTop: '3rem',
+              paddingTop: 'clamp(1rem, 6vh, 3rem)',
             }}
           >
             {/* Label */}
@@ -218,7 +218,7 @@ export default function ArtificialMind() {
             <div
               ref={headlineRef}
               className="font-display overflow-hidden"
-              style={{ fontSize: 'clamp(3rem, 9vw, 10rem)', fontWeight: 800,
+              style={{ fontSize: 'clamp(2.5rem, min(9vw, 12vh), 9rem)', fontWeight: 800,
                 lineHeight: 0.88, letterSpacing: '-0.04em', perspective: '800px' }}
             >
               {[
@@ -304,7 +304,7 @@ export default function ArtificialMind() {
           {/* ── Network layer labels (bottom of canvas) ────────────────────── */}
           <div ref={layerLabels}
             className="absolute inset-x-0 font-mono-dm"
-            style={{ bottom: '6rem', display: 'flex', justifyContent: 'center', gap: 0 }}
+            style={{ bottom: '6rem', display: 'flex', justifyContent: 'flex-start', gap: 0 }}
           >
             {LAYERS.map(({ label, sub, x }) => (
               <div key={label} className="layer-label absolute text-center"
