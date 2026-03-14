@@ -15,6 +15,7 @@ const HumanMind     = dynamic(() => import('@/components/sections/HumanMind'),  
 const ArtificialMind= dynamic(() => import('@/components/sections/ArtificialMind'),{ ssr: false });
 const Beyond        = dynamic(() => import('@/components/sections/Beyond'),        { ssr: false });
 const Outro         = dynamic(() => import('@/components/sections/Outro'),         { ssr: false });
+const Epilogue      = dynamic(() => import('@/components/sections/Epilogue'),      { ssr: false });
 
 export default function Home() {
   const [loaderDone, setLoaderDone] = useState(false);
@@ -38,6 +39,7 @@ export default function Home() {
           {loaderDone && <ArtificialMind />}
           {loaderDone && <Beyond />}
           {loaderDone && <Outro />}
+          {loaderDone && <Epilogue />}
         </main>
       </SmoothScroll>
     </>
