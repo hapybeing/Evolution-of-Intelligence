@@ -124,7 +124,7 @@ export default function Beyond() {
           {/* Left column */}
           <div className="flex flex-col justify-center"
             style={{ paddingLeft: 'clamp(1.5rem, 5vw, 5rem)', paddingRight: '2rem',
-              width: '55%', paddingTop: '3rem' }}
+              width: '55%', paddingTop: 'clamp(1rem, 6vh, 3rem)' }}
           >
             <div ref={labelRef} className="font-mono-dm mb-6"
               style={{ opacity: 0, fontSize: '0.6rem', letterSpacing: '0.35em',
@@ -134,7 +134,7 @@ export default function Beyond() {
             </div>
 
             <div ref={headlineRef} className="font-display overflow-hidden"
-              style={{ fontSize: 'clamp(3rem, 9vw, 10rem)', fontWeight: 800,
+              style={{ fontSize: 'clamp(2.5rem, min(9vw, 12vh), 9rem)', fontWeight: 800,
                 lineHeight: 0.88, letterSpacing: '-0.04em', perspective: '800px' }}
             >
               {[
