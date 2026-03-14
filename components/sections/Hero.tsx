@@ -444,7 +444,6 @@ export default function Hero() {
 
       {/* ── Transition panel — fills scroll overhang ─────────────────────── */}
       <TransitionPanel
-        chapter="I"
         label="Cosmic Origins — 13.8 billion years ago"
         statement="Everything that exists was once compressed into a space smaller than an atom."
         accent="smaller than an atom"
