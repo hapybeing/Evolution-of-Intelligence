@@ -312,15 +312,15 @@ export default function CosmicCanvas({ scrollProgress, mousePos }: CosmicCanvasP
         far: 100,
       }}
       gl={{
-        antialias: false,   // Off for perf with 80k particles
-        alpha: true,
+        antialias: false,
+        alpha: false,
         powerPreference: 'high-performance',
       }}
       dpr={[1, 2]}
       style={{
         position: 'absolute',
         inset: 0,
-        background: 'transparent',
+        background: '#000000',
       }}
     >
       <NebulaGlow />
