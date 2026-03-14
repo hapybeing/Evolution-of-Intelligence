@@ -190,7 +190,7 @@ export default function HumanMind() {
               paddingLeft: 'clamp(1.5rem, 5vw, 5rem)',
               paddingRight: '2rem',
               width: '52%',
-              paddingTop: '3rem',
+              paddingTop: 'clamp(1rem, 6vh, 3rem)',
             }}
           >
             {/* Label */}
@@ -203,7 +203,7 @@ export default function HumanMind() {
 
             {/* Headline */}
             <div ref={headlineRef} className="font-display overflow-hidden"
-              style={{ fontSize: 'clamp(3rem, 9vw, 10rem)', fontWeight: 800,
+              style={{ fontSize: 'clamp(2.5rem, min(9vw, 12vh), 9rem)', fontWeight: 800,
                 lineHeight: 0.88, letterSpacing: '-0.04em', perspective: '800px' }}
             >
               {[
