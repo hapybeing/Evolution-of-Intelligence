@@ -95,7 +95,7 @@ export default function Beyond() {
       ref={sectionRef}
       className="section-full"
       style={{
-        minHeight: '220vh',
+        minHeight: '160vh',
         background: '#06000f',
         flexDirection: 'column',
         isolation: 'isolate',
@@ -104,7 +104,7 @@ export default function Beyond() {
         marginTop: '-2px',
       }}
     >
-      <div style={{ position: 'sticky', top: 0, width: '100%', height: '100vh', overflow: 'hidden' }}>
+      <div style={{ position: 'sticky', top: 0, width: '100%', height: '100vh', overflow: 'clip' }}>
 
         <div className="canvas-layer" style={{ background: '#06000f' }}>
           {mounted && <VoidCanvas />}
